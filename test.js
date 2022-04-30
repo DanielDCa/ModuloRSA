@@ -3,12 +3,6 @@ const bcu = require('bigint-crypto-utils');
 const myRsa = require("./rsa/generateRandomKeys");
 const { RsaPublicKey } = require("./rsa/rsaPublicKey");
 
-// const publiKey = new RsaPublicKey(2,3);
-// publiKey.encrypt(BigInt(8));
-
-//myRsa.generateRsaKey(4);
-
-
 console.log("----------------");
 
 const bitLength = 1024;
@@ -19,7 +13,8 @@ async function main(){
     const bitLength = 1024;
     const keyPair = await myRsa.generateRsaKey(bitLength);
     
-    const m = bcu.randBetween(keyPair.publicKey.n - 1n); //Genera un mensaje aleatorio -- Con el modulo - 1
+    //Generate a ramdon message --> with the module - 1
+    const m = bcu.randBetween(keyPair.publicKey.n - 1n); 
 
     const c = keyPair.publicKey.encrypt(m)
 
@@ -33,6 +28,3 @@ async function main(){
     }
 
 }
-
-
-//Segado y desegado en la firma a ciega

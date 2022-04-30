@@ -5,9 +5,6 @@ class RsaPublicKey{
     n;
 
     r;
-    //blindMessage;
-    //signedMessage;
-    
 
     constructor(e,n){
         this.e=e;
@@ -17,9 +14,9 @@ class RsaPublicKey{
     encrypt(m){
         console.log(m)
         return bcu.modPow(m,this.e,this.n)
-    }º
+    }
     verify(s){
-        return bcu.modPow(s,this.e,this.n);º
+        return bcu.modPow(s,this.e,this.n);
     }
     blind(message, r){
         //how to calculate r?
@@ -32,11 +29,9 @@ class RsaPublicKey{
         return signedMessage;
     }
     /*
-    -El verify para que sirve (Veo que retorna el modulo del numero)
-    -Verificar como puedo sacar la R
-
+        -El verify para que sirve (Veo que retorna el modulo del numero)
+        -Verificar como puedo sacar la r
     */
 }
-
 exports.RsaPublicKey = RsaPublicKey;
-//bigint-crypto-utils  (Exponenciacion modular y el inverso modular)
+
