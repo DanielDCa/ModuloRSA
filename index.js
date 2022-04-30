@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');//This module, allow us see in the console what client requesting
+const cors = require('cors');
 
 	
 //Configurations
@@ -11,6 +12,7 @@ app.set('json spaces', 2)
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());//With this now the server can understand the json formats
+app.use(cors());
 app.use(require('./routes/rsaroute'))
 
 
