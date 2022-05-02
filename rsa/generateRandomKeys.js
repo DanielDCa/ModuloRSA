@@ -20,7 +20,7 @@ async function generateRsaKey(bitLength){
 
     const keypair = {
         publicKey: publicKey,
-        privateKey
+        privateKey: privateKey
     }
     
     return keypair

@@ -2,7 +2,7 @@ const bcu = require('bigint-crypto-utils');
 class RsaPrivateKey{
     d;
     n;
-
+    
     constructor(d,n){
         this.d =d;
         this.n =n;

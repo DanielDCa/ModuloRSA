@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const myRsa = require("../rsa/generateRandomKeys");
-const bigintConversion = require("bigint-conversion");
+const rsaController = require ("../controllers/rsacontroller")
 
 //GET
 router.get("/", (req, res) => {
@@ -10,15 +9,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/publickey", async (req, res) => {
-  let randomKeys = await myRsa.generateRsaKey(1024);
-  console.log(randomKeys);
-  res.json({
-    publicKey: {
-      e: bigintConversion.bigintToHex(randomKeys.publicKey.e),
-      n: bigintConversion.bigintToHex(randomKeys.publicKey.n),
-    },
-  });
-});
+router.get("/publickey", rsaController.getPulicKey);
+router.put(("/sendmessage"), rsaController.receiveEncryptedMessage)
 
 module.exports = router;
