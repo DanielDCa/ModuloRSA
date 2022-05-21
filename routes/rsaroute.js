@@ -8,8 +8,15 @@ router.get("/", (req, res) => {
     Title: "Hola mundo",
   });
 });
-
+//GET PUBLIC KEY
 router.get("/publickey", rsaController.getPulicKey);
-router.put(("/sendmessage"), rsaController.receiveEncryptedMessage)
+
+//POST receive the message from client
+router.post(("/decrypt"), rsaController.decryptMessage);
+
+//POST receive the message from clien and sign it
+router.post(("/sign"), rsaController.signMessage);
+
+//router.post(("/signBlind"), rsaController.signMessage);
 
 module.exports = router;

@@ -4,7 +4,7 @@ const { RsaPublicKey } = require('./rsapublickey');
 
 e = 65537n;
 async function generateRsaKey(bitLength){
-
+//Bitlength is the size of the module "n"
     let p, q, n, phin;
 
     do {
@@ -13,7 +13,8 @@ async function generateRsaKey(bitLength){
         n = q * p;
         phin = (p - 1n)*(q - 1n);
     } while (q === p || bcu.bitLength(n) !== bitLength || phin % e === 0n);
-    //e cant be split by phin (has to be different than 0 ==> coprime)
+    //Also calculate the bitLength of our module, because we always want the same size
+    //e can not be split by phin (has to be different than 0, that means ==> coprime)
     const publicKey = new RsaPublicKey(e,n);
     const d = bcu.modInv(e,phin);
     const privateKey = new RsaPrivateKey(d,n)
