@@ -18,5 +18,7 @@ router.post(("/decrypt"), rsaController.decryptMessage);
 router.post(("/sign"), rsaController.signMessage);
 
 //router.post(("/signBlind"), rsaController.signMessage);
+router.get("/pailler", rsaController.paillerget)
+
 
 module.exports = router;

@@ -1,6 +1,9 @@
 const rsaController = {};
+const myPailler = require('../rsa/generateRandomPaillerKeys');
 const myRsa = require("../rsa/generateRandomKeys");
 const bigintConversion = require("bigint-conversion");
+const {PaillerPublicKey} = require ('../rsa/paillerPublicKey')
+const {PaillerPrivateKey} = require ('../rsa/paillerPrivateKey')
 
 rsaController.getPulicKey = async (req, res) =>{
     rsaController.getRandomKeys = await myRsa.generateRsaKey(1024);
@@ -35,6 +38,29 @@ rsaController.signMessage = (req, res) => {
     });
 
 }
+
+rsaController.paillerget = async (req, res) => {
+
+
+    keyRSA = await myRsa.generateRsaKey(2048);
+   
+        const { publicKey, privateKey } = await myPailler.generateRandomPaillerKeys(3072)
+        var PaillerPublicKey = publicKey 
+        const iniciarVoto = 0n;
+        votos = PaillerPublicKey.encrypt(iniciarVoto);
+        
+    
+
+      res.json({
+        eHex: bigintConversion.bigintToHex(keyRSA.publicKey.e),
+        nHex: bigintConversion.bigintToHex(keyRSA.publicKey.n),
+        nPaillierHex: bigintConversion.bigintToHex(PaillerPublicKey.n),
+        gPaillierHex: bigintConversion.bigintToHex(PaillerPublicKey.g)
+      })
+    
+}
+
+
 
 module.exports = rsaController;
 
